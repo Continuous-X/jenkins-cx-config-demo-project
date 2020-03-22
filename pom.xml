@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>com.cx.jenkins.config</groupId>
-    <artifactId>jenkins-cx-config-sample-project</artifactId>
+    <artifactId>jenkins-cx-config-demo-project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <build>
