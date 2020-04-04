@@ -7,12 +7,18 @@
     <parent>
         <groupId>com.cx.jenkins.image</groupId>
         <artifactId>parent</artifactId>
-        <version>0.1.0</version>
+        <version>v0.1.2</version>
     </parent>
 
     <groupId>com.cx.jenkins.config</groupId>
     <artifactId>jenkins-cx-config-demo-project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
+    <dependencyManagement>
+    </dependencyManagement>
+
+    <dependencies>
+    </dependencies>
 
     <build>
         <finalName>${project.artifactId}</finalName>
@@ -36,7 +42,7 @@
                 <configuration>
                     <sources>
                         <source>
-                            <directory>${project.basedir}/src/main/groovy</directory>
+                            <directory>src/main/groovy</directory>
                             <includes>
                                 <include>**/*.groovy</include>
                             </includes>
@@ -44,7 +50,7 @@
                     </sources>
                     <testSources>
                         <testSource>
-                            <directory>${project.basedir}/src/test/groovy</directory>
+                            <directory>src/test/groovy</directory>
                             <includes>
                                 <include>**/*.groovy</include>
                             </includes>

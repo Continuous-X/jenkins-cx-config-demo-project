@@ -1,0 +1,94 @@
+jenkins:
+  mode: NORMAL
+  numExecutors: 2
+  agentProtocols:
+    - "JNLP4-connect"
+    - "Ping"
+  nodeProperties:
+    - jobRestrictionProperty:
+        jobRestriction:
+          or:
+            first:
+              multipleAnd:
+                restrictions:
+                  - ownersList:
+                      usersList:
+                        - selectedUserId: "admin"
+                      acceptsCoOwners: false
+                  - regexNameRestriction:
+                      checkShortName: false
+                      regexExpression: "^System/.+"
+            second:
+              jobClassNameRestriction:
+                jobClasses:
+                  - selectedClass: "org.jenkinsci.plugins.workflow.job.WorkflowJob"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: true
+  disableRememberMe: false
+  scmCheckoutRetryCount: 0
+  projectNamingStrategy: "standard"
+  markupFormatter: "plainText"
+  slaveAgentPort: 50000
+  myViewsTabBar: "standard"
+  viewsTabBar: "standard"
+
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+  authorizationStrategy:
+    roleBased:
+      roles:
+        global:
+          - name: "admin"
+            description: "Jenkins administrators"
+            permissions:
+              - "Overall/Administer"
+            assignments:
+              - "admin"
+          - name: "readonly"
+            description: "Read-only users"
+            permissions:
+              - "Overall/Read"
+              - "Job/Read"
+              - "Agent/Build"
+            assignments:
+              - "authenticated"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  queueItemAuthenticator:
+    authenticators:
+      - global:
+          strategy: "triggeringUsersAuthorizationStrategy"
+  sSHD:
+    port: -1
+unclassified:
+  globalLibraries:
+    libraries:
+    - defaultVersion: "master"
+      name: "jenkins-cx-shared-library"
+      retriever:
+        modernSCM:
+          scm:
+            github:
+              configuredByUrl: true
+              repoOwner: "Continuous-X"
+              repository: "jenkins-cx-shared-library"
+              repositoryUrl: "https://github.com/Continuous-X/jenkins-cx-shared-library.git"
+              traits:
+                - gitHubBranchDiscovery:
+                    strategyId: 1
+                - gitHubPullRequestDiscovery:
+                    strategyId: 1
+                - gitHubForkDiscovery:
+                    strategyId: 1
+                    trust: "gitHubTrustPermissions"
+tool:
+  git:
+    installations:
+      - home: "git"
+        name: "Default"
