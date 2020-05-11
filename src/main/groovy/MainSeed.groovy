@@ -18,7 +18,7 @@ multiBranchJobs.each { job ->
             git {
                 id(job.name)
                 remote(job.url)
-                includes('JENKINS-*')
+                includes('*')
             }
         }
         orphanedItemStrategy {
