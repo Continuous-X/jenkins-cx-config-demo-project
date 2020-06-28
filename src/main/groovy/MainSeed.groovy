@@ -6,8 +6,8 @@ folder('Demo') {
 
 multiBranchJobs = [
         [
-                name: 'jenkins-cx-shared-library',
-                url: 'https://github.com/Continuous-X/jenkins-cx-shared-library'
+                name: 'springboot-sample-app.git',
+                url: 'https://github.com/Continuous-X/springboot-sample-app.git'
         ]
 ]
 
